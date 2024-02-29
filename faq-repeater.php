@@ -128,7 +128,7 @@ function display_faq_accordion() {
                 if ( ! empty( $question ) && ! empty( $answer ) ) {
                     ?>
                     <div class="faq-item">
-                        <h3 class="faq-question"><?php echo esc_html( $question ); ?></h3>
+                        <p class="faq-question"><?php echo esc_html( $question ); ?><i class="fa fa-plus accordion-icon"></i><i class="fa fa-minus accordion-icon" style="display:none;"></i></p>
                         <div class="faq-answer"><?php echo $answer; ?></div>
                     </div>
                     <?php
