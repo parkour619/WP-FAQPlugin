@@ -1,28 +1,8 @@
 //to show on single.php or any page just add this code.
 
 <style>
+
 /* FAQ Accordion Styles */
-.faq-accordion .faq-item {
-    margin-bottom: 20px;
-}
-
-.faq-accordion .faq-question {
-    background-color: #f4f4f4;
-    color: #333;
-    padding: 10px;
-    margin: 0;
-    cursor: pointer;
-}
-
-.faq-accordion .faq-answer {
-    padding: 10px;
-    display: none;
-}
-
-.faq-accordion .faq-item.active .faq-answer {
-    display: block;
-}
-	/* FAQ Accordion Styles */
 .faq-accordion .faq-item {
     margin-bottom: 20px;
 }
@@ -35,6 +15,9 @@
     cursor: pointer;
     position: relative;
 }
+.fa-plus.accordion-icon, .fa-minus.accordion-icon {
+    float: right;
+}
 
 .faq-accordion .faq-answer {
     padding: 10px;
@@ -45,22 +28,9 @@
 .faq-accordion .faq-item.active .faq-answer {
     display: block;
 }
-
-/* Plus and minus icons */
-.faq-accordion .faq-question::after {
-    content: '+';
-    position: absolute;
-    top: 50%;
-    right: 10px;
-    transform: translateY(-50%);
-}
-
-.faq-accordion .faq-question.active::after {
-    content: '-';
-}
-
 </style>
 
+<div>
 <?php
 if ( is_single() && has_action( 'faq_single_post_content' ) ) {
 	
@@ -71,28 +41,32 @@ if ( is_single() && has_action( 'faq_single_post_content' ) ) {
 }
 ?>
 
+		</div>
+
 
 <!-- Add jQuery code for FAQ accordion -->
 <script>
-   jQuery(document).ready(function($) {
-    // Toggle FAQ answer visibility
-    $('.faq-question').click(function() {
-        var $faqItem = $(this).parent('.faq-item');
-        var $faqAnswer = $(this).next('.faq-answer');
+    jQuery(document).ready(function($) {
+        // Initially hide all answer panels except the first one
+        $('.faq-answer').not(':first').hide();
 
-        // Close other answers
-        $('.faq-answer').not($faqAnswer).slideUp();
-        $('.faq-item').not($faqItem).removeClass('active');
+        // Show plus icons for all accordions except the first one
+        $('.faq-item').not(':first').find('.fa-plus').show();
 
-        // Toggle visibility of this answer
-        $faqAnswer.slideToggle();
+        // Toggle panel visibility and icons
+        $('.faq-question').click(function() {
+            var $panel = $(this).next('.faq-answer');
+            
+            // Toggle panel visibility
+            $panel.slideToggle();
 
-        // Toggle active class
-        $faqItem.toggleClass('active');
+            // Toggle active class for the accordion
+            $(this).parent('.faq-item').toggleClass('active').siblings('.faq-item').removeClass('active').find('.faq-answer').slideUp();
 
-        // Toggle plus and minus icons
-        $(this).toggleClass('active');
+            // Toggle icons for the clicked accordion
+            $(this).find('.fa-plus, .fa-minus').toggle();
+            $(this).parent('.faq-item').siblings('.faq-item').find('.fa-minus').hide();
+            $(this).parent('.faq-item').siblings('.faq-item').find('.fa-plus').show();
+        });
     });
-});
-
 </script>
