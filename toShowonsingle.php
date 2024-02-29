@@ -96,7 +96,3 @@ if ( is_single() && has_action( 'faq_single_post_content' ) ) {
 });
 
 </script>
-
-
-
-////hello from dev
