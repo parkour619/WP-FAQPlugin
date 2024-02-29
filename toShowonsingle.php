@@ -13,13 +13,18 @@
     padding: 10px;
     margin: 0;
     cursor: pointer;
-    position: relative;
+    position: relative;	font-size: 18px;
+    line-height: 36px;
+    font-weight: 500;
 }
+
 .fa-plus.accordion-icon, .fa-minus.accordion-icon {
     float: right;
 }
 
 .faq-accordion .faq-answer {
+    font-size: 18px;
+    line-height: 30px;
     padding: 10px;
     display: none;
     background-color: #f4f4f4; /* Set background color of answer to match question */
